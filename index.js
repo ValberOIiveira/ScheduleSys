@@ -5,7 +5,7 @@ const port = 8080;
 const mongoose = require("mongoose");
 
 app.use(express.static("public"));
-app.use(bodyParser.urlencoded({ extendend: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.set("view engine", "ejs");
 
@@ -15,7 +15,11 @@ mongoose.connect("mongodb://127.0.0.1:27017/schedulesys", {
 });
 
 app.get("/", (req, res) => {
-  res.send("<h1>Hello, world!</h1>");
+  res.send("Hello, world!");
+});
+
+app.get("/cadastro", (req, res) => {
+  res.render("create");
 });
 
 app.listen(port, () => {
